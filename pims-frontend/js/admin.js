@@ -1,6 +1,10 @@
 const BASE_URL = "https://pims-backend-xa8s.onrender.com";
 const token = localStorage.getItem("token");
 
+if (!token) {
+    window.location.href = "index.html";
+}
+
 fetch(`${BASE_URL}/api/admin/companies`, {
     headers: {
         "Authorization": "Bearer " + token
@@ -13,27 +17,6 @@ fetch(`${BASE_URL}/api/admin/companies`, {
     data.forEach(company => {
         const row = document.createElement("tr");
 
-//          row.innerHTML = `
-//     <td>${company.id}</td>
-//     <td>${company.companyName}</td>
-//     <td>
-//         ${
-//             company.approved
-//                 ? `<span class="status status-approved">✔ Approved</span>`
-//                 : `<span class="status status-pending">Pending</span>`
-//         }
-//     </td>
-//     <td>
-//         ${
-//             company.approved
-//                 ? `<button class="btn btn-disabled" disabled>Approved</button>`
-//                 : `
-//                     <button class="btn btn-approve" onclick="approve(${company.id})">Approve</button>
-//                     <button class="btn btn-reject" onclick="reject(${company.id})">Reject</button>
-//                   `
-//         }
-//     </td>
-// `;
 
         row.innerHTML = `
             <td>${company.id}</td>
@@ -82,4 +65,9 @@ function reject(id) {
             "Authorization": "Bearer " + token
         }
     }).then(() => location.reload());
+}
+
+function logout() {
+    localStorage.removeItem("token");
+    window.location.href = "index.html";
 }
