@@ -8,6 +8,10 @@ import com.pims.service.application.ApplicationService;
 import com.pims.service.jobPosting.JobPostingService;
 import com.pims.service.student.StudentService;
 import jakarta.validation.Valid;
+import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -65,10 +69,18 @@ public List<ApplicationResponse> getMyApplications() {
     return applicationService.getApplicationsForStudent();
 }
 
-@PostMapping("/upload-resume")
-public String uploadResume(@RequestParam("file") MultipartFile file) {
+// @PostMapping("/upload-resume")
+// public String uploadResume(@RequestParam("file") MultipartFile file) {
+//     studentService.uploadResume(file);
+//     return "Resume uploaded successfully!";
+// }
+@PostMapping(value = "/upload-resume", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+public ResponseEntity<String> uploadResume(
+        @RequestParam("file") MultipartFile file,
+        Authentication authentication) {
+
     studentService.uploadResume(file);
-    return "Resume uploaded successfully!";
+    return ResponseEntity.ok("Resume uploaded successfully!");
 }
 
 @DeleteMapping("/delete-resume")
