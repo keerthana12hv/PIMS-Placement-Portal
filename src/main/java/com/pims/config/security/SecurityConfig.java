@@ -6,7 +6,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 
 @Configuration
@@ -42,40 +45,25 @@ public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Excepti
 }
 
 
-    // @Bean
-    // public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+@Bean
+public CorsConfigurationSource corsConfigurationSource() {
 
-    //     http
-    //         .csrf(csrf -> csrf.disable())
-    //         .cors(cors -> {})
-    //         .sessionManagement(session ->
-    //                 session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-    //         .authorizeHttpRequests(auth -> auth
+    CorsConfiguration configuration = new CorsConfiguration();
 
-    //             // ✅ Public endpoints
-    //             .requestMatchers("/api/auth/**").permitAll()
+    configuration.setAllowCredentials(true);
 
-    //             // ✅ VERY IMPORTANT — allow uploaded files
-    //             .requestMatchers("/uploads/**").permitAll()
+    // For now allow all (later restrict to frontend URL)
+    configuration.addAllowedOriginPattern("*");
 
-    //             // ✅ Swagger (for later admin testing)
-    //             .requestMatchers(
-    //                     "/v3/api-docs/**",
-    //                     "/swagger-ui/**",
-    //                     "/swagger-ui.html"
-    //             ).permitAll()
+    configuration.addAllowedHeader("*");
+    configuration.addAllowedMethod("*");
 
-    //             // ✅ Role based access
-    //             .requestMatchers("/api/student/**").hasAuthority("ROLE_STUDENT")
-    //             .requestMatchers("/api/company/**").hasAuthority("ROLE_COMPANY")
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/**", configuration);
 
-    //             .anyRequest().authenticated()
-    //         )
-    //         .addFilterBefore(jwtAuthenticationFilter,
-    //                 UsernamePasswordAuthenticationFilter.class);
+    return source;
+}
 
-    //     return http.build();
-    // }
 
     @Bean
 public WebSecurityCustomizer webSecurityCustomizer() {
