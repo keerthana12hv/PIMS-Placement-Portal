@@ -14,10 +14,18 @@ public class CorsConfig {
 
         CorsConfiguration configuration = new CorsConfiguration();
 
-        configuration.setAllowedOriginPatterns(List.of("*")); // 👈 use patterns
+        configuration.setAllowedOrigins(List.of(
+                "https://chic-cheesecake-df6cbd.netlify.app"
+        ));
+
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);
+
+        // configuration.setAllowedOriginPatterns(List.of("*")); // 👈 use patterns
+        // configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        // configuration.setAllowedHeaders(List.of("*"));
+        // configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source =
                 new UrlBasedCorsConfigurationSource();
