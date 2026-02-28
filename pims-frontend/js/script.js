@@ -1,6 +1,7 @@
 /* =============================
    LOGIN
 ============================= */
+const BASE_URL = "https://pims-backend-xa8s.onrender.com";
 async function login() {
   const email = document.getElementById("loginEmail").value;
   const password = document.getElementById("loginPassword").value;
@@ -9,7 +10,7 @@ async function login() {
   errorEl.innerText = "";
 
   try {
-    const response = await fetch("http://localhost:8080/api/auth/login", {
+    const response = await fetch(`${BASE_URL}/api/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -39,42 +40,6 @@ async function login() {
   }
 }
 
-// async function login() {
-//     const email = document.getElementById("loginEmail").value;
-//     const password = document.getElementById("loginPassword").value;
-//     const errorEl = document.getElementById("loginError");
-
-//     errorEl.innerText = "";
-
-//     try {
-//         const response = await fetch("http://localhost:8080/api/auth/login", {
-//             method: "POST",
-//             headers: {
-//                 "Content-Type": "application/json"
-//             },
-//             body: JSON.stringify({ email, password })
-//         });
-
-//         if (!response.ok) {
-//             throw new Error("Invalid credentials");
-//         }
-
-//         const data = await response.json();
-
-//         localStorage.setItem("token", data.token);
-//         localStorage.setItem("role", data.role);
-
-//         if (data.role === "STUDENT") {
-//             window.location.href = "student.html";
-//         } else if (data.role === "COMPANY") {
-//             window.location.href = "company.html";
-//         }
-
-//     } catch (error) {
-//         errorEl.innerText = "Login failed. Please check your credentials.";
-//     }
-// }
-
 /* =============================
    REGISTER
 ============================= */
@@ -88,7 +53,7 @@ async function register() {
   errorEl.innerText = "";
 
   try {
-    const response = await fetch("http://localhost:8080/api/auth/register", {
+    const response = await fetch(`${BASE_URL}/api/auth/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

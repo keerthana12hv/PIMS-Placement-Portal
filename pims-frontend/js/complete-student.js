@@ -1,8 +1,9 @@
+const BASE_URL = "https://pims-backend-xa8s.onrender.com";
 const token = localStorage.getItem("token");
 
 async function saveStudentProfile() {
 
-    const response = await fetch("http://localhost:8080/api/student/profile", {
+    const response = await fetch(`${BASE_URL}/api/student/profile`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

@@ -1,7 +1,7 @@
 /* ===========================
    GLOBAL SETUP
 =========================== */
-
+const BASE_URL = "https://pims-backend-xa8s.onrender.com";
 const token = localStorage.getItem("token");
 
 if (!token) {
@@ -22,7 +22,7 @@ let pendingMessage = null;
 async function checkProfileStatus() {
   try {
     const res = await fetch(
-      "http://localhost:8080/api/student/profile",
+      `${BASE_URL}/api/student/profile`,
       {
         headers: { Authorization: "Bearer " + token }
       }
@@ -112,10 +112,10 @@ async function loadDashboard() {
 
   try {
     const [appsRes, jobsRes] = await Promise.all([
-      fetch("http://localhost:8080/api/student/applications", {
+      fetch(`${BASE_URL}/api/student/applications`, {
         headers: { Authorization: "Bearer " + token }
       }),
-      fetch("http://localhost:8080/api/student/jobs", {
+      fetch(`${BASE_URL}/api/student/jobs`, {
         headers: { Authorization: "Bearer " + token }
       })
     ]);
@@ -165,7 +165,7 @@ async function loadJobs() {
   document.getElementById("jobControls").classList.remove("hidden");
 
   try {
-    const res = await fetch("http://localhost:8080/api/student/jobs", {
+    const res = await fetch(`${BASE_URL}/api/student/jobs`, {
       headers: { Authorization: "Bearer " + token }
     });
 
@@ -238,7 +238,7 @@ function closeModal() {
 async function applyJob(jobId) {
   try {
     const res = await fetch(
-      `http://localhost:8080/api/student/apply/${jobId}`,
+      `${BASE_URL}/api/student/apply/${jobId}`,
       {
         method: "POST",
         headers: { Authorization: "Bearer " + token }
@@ -291,7 +291,7 @@ async function loadApplications() {
 
   try {
     const res = await fetch(
-      "http://localhost:8080/api/student/applications",
+      `${BASE_URL}/api/student/applications`,
       { headers: { Authorization: "Bearer " + token } }
     );
 
@@ -328,7 +328,7 @@ async function loadProfile() {
 
   try {
     const res = await fetch(
-      "http://localhost:8080/api/student/profile",
+      `${BASE_URL}/api/student/profile`,
       { headers: { Authorization: "Bearer " + token } }
     );
 
@@ -385,7 +385,7 @@ async function loadProfile() {
             data.resumeUrl
               ? `
                 <a class="btn-primary"
-                   href="http://localhost:8080/${data.resumeUrl}"
+                   href="${BASE_URL}/${data.resumeUrl}"
                    target="_blank">
                    🔍 View Resume
                 </a>
@@ -464,7 +464,7 @@ document.getElementById("editProfileForm").addEventListener("submit", async func
 
   try {
     const res = await fetch(
-      "http://localhost:8080/api/student/profile",
+      `${BASE_URL}/api/student/profile`,
       {
         method: "PUT",
         headers: {
@@ -495,31 +495,6 @@ function triggerResumeUpload() {
   document.getElementById("resumeInput").click();
 }
 
-// async function uploadResume() {
-//   const file = document.getElementById("resumeInput").files[0];
-//   if (!file) return;
-
-//   const formData = new FormData();
-//   formData.append("file", file);
-
-//   try {
-//     const res = await fetch(
-//       "http://localhost:8080/api/student/upload-resume",
-//       {
-//         method: "POST",
-//         headers: { Authorization: "Bearer " + token },
-//         body: formData
-//       }
-//     );
-
-//     if (!res.ok) throw new Error();
-
-//     showMessage("Resume uploaded!", "success");
-//     loadProfile();
-//   } catch {
-//     showMessage("Upload failed.", "error");
-//   }
-// }
 async function uploadResume() {
   const file = document.getElementById("resumeInput").files[0];
   if (!file) return;
@@ -530,7 +505,7 @@ async function uploadResume() {
 
   try {
     const res = await fetch(
-      "http://localhost:8080/api/student/upload-resume",
+      `${BASE_URL}/api/student/upload-resume`,
       {
         method: "POST",
         headers: { Authorization: "Bearer " + token },
@@ -550,7 +525,7 @@ async function uploadResume() {
 async function deleteResume() {
   try {
     const res = await fetch(
-      "http://localhost:8080/api/student/delete-resume",
+      `${BASE_URL}/api/student/delete-resume`,
       {
         method: "DELETE",
         headers: { Authorization: "Bearer " + token }

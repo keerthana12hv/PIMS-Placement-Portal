@@ -1,6 +1,7 @@
+const BASE_URL = "https://pims-backend-xa8s.onrender.com";
 const token = localStorage.getItem("token");
 
-fetch("http://localhost:8080/api/admin/companies", {
+fetch(`${BASE_URL}/api/admin/companies`, {
     headers: {
         "Authorization": "Bearer " + token
     }
@@ -62,7 +63,7 @@ fetch("http://localhost:8080/api/admin/companies", {
 });
 
 function approve(id) {
-    fetch(`http://localhost:8080/api/admin/company/${id}/approve`, {
+    fetch(`${BASE_URL}/api/admin/company/${id}/approve`, {
         method: "PUT",
         headers: {
             "Authorization": "Bearer " + token
@@ -75,7 +76,7 @@ function approve(id) {
 }
 
 function reject(id) {
-    fetch(`http://localhost:8080/api/admin/company/${id}/reject`, {
+    fetch(`${BASE_URL}/api/admin/company/${id}/reject`, {
         method: "PUT",
         headers: {
             "Authorization": "Bearer " + token

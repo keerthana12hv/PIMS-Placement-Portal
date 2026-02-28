@@ -1,8 +1,9 @@
+const BASE_URL = "https://pims-backend-xa8s.onrender.com";
 const token = localStorage.getItem("token");
 
 async function saveCompanyProfile() {
 
-    const response = await fetch("http://localhost:8080/api/company/profile", {
+    const response = await fetch(`${BASE_URL}/api/company/profile`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

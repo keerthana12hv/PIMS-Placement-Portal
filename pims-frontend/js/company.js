@@ -1,3 +1,4 @@
+const BASE_URL = "https://pims-backend-xa8s.onrender.com";
 const token = localStorage.getItem("token");
 
 if (!token) {
@@ -11,7 +12,7 @@ function logout() {
 
 // 🔹 Load Applications
 function loadApplications() {
-  fetch("http://localhost:8080/api/company/applications", {
+  fetch(`${BASE_URL}/api/company/applications`, {
     headers: {
       Authorization: "Bearer " + token,
     },
@@ -60,7 +61,7 @@ function loadApplications() {
 
 function updateApplicationStatus(applicationId, status) {
   fetch(
-    `http://localhost:8080/api/company/applications/${applicationId}?status=${status}`,
+    `${BASE_URL}/api/company/applications/${applicationId}?status=${status}`,
     {
       method: "PUT",
       headers: {
@@ -158,7 +159,7 @@ async function createJob() {
       return;
     }
 
-    const response = await fetch("http://localhost:8080/api/company/jobs", {
+    const response = await fetch(`${BASE_URL}/api/company/jobs`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -191,7 +192,7 @@ async function createJob() {
 }
 
 function closeJob(jobId) {
-  fetch(`http://localhost:8080/api/company/jobs/${jobId}/close`, {
+  fetch(`${BASE_URL}/api/company/jobs/${jobId}/close`, {
     method: "PUT",
     headers: {
       Authorization: "Bearer " + token,
@@ -205,7 +206,7 @@ function closeJob(jobId) {
 }
 
 function deleteJob(jobId) {
-  fetch(`http://localhost:8080/api/company/jobs/${jobId}`, {
+  fetch(`${BASE_URL}/api/company/jobs/${jobId}`, {
     method: "DELETE",
     headers: {
       Authorization: "Bearer " + token,
@@ -219,7 +220,7 @@ function deleteJob(jobId) {
 }
 
 function loadMyJobs() {
-  fetch("http://localhost:8080/api/company/jobs", {
+  fetch(`${BASE_URL}/api/company/jobs`, {
     headers: { Authorization: "Bearer " + token },
   })
     .then((res) => res.json())
@@ -266,7 +267,7 @@ function loadMyJobs() {
 }
 
 function loadDashboard() {
-  fetch("http://localhost:8080/api/company/dashboard", {
+  fetch(`${BASE_URL}/api/company/dashboard`, {
     headers: {
       Authorization: "Bearer " + token,
     },
@@ -304,7 +305,7 @@ function loadDashboard() {
 // loadDashboard();
 window.onload = async function () {
   try {
-    const response = await fetch("http://localhost:8080/api/company/profile", {
+    const response = await fetch(`${BASE_URL}/api/company/profile`, {
       headers: {
         Authorization: "Bearer " + token,
       },
