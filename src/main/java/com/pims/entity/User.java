@@ -1,0 +1,25 @@
+package com.pims.entity;
+
+import com.pims.enums.Role;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@Entity
+@Table(name = "users")
+public class User extends BaseEntity {
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
+
+    @Column(name = "is_active")
+    private Boolean active = true;
+}

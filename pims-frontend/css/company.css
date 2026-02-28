@@ -1,0 +1,289 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: white;
+}
+
+/* ================= Layout ================= */
+.layout {
+    display: flex;
+    height: 100vh;
+}
+
+/* ================= Sidebar ================= */
+.sidebar {
+    width: 250px;
+    background: #111827;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.4);
+}
+
+.sidebar h2 {
+    margin-bottom: 40px;
+    font-size: 20px;
+    color: #38bdf8;
+}
+
+.sidebar button {
+    background: transparent;
+    border: none;
+    color: #cbd5e1;
+    text-align: left;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.sidebar button:hover {
+    background: #1f2937;
+    color: white;
+    transform: translateX(5px);
+}
+
+.logout {
+    margin-top: auto;
+    color: #ef4444;
+}
+
+/* ================= Main ================= */
+.main {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+}
+
+/* ================= Cards ================= */
+.card {
+    background: #1e293b;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+}
+
+/* ================= Form Section ================= */
+.form-section {
+    margin-top: 20px;
+    background: #1e293b;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 13px;
+    margin-bottom: 6px;
+    color: #94a3b8;
+}
+
+/* 🔥 Single clean rule for all form inputs */
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background: #111827;
+    color: white;
+    outline: none;
+}
+
+/* Textarea only */
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* ================= Buttons ================= */
+.btn-primary {
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,114,255,0.4);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid #00c6ff;
+    padding: 10px 20px;
+    border-radius: 6px;
+    color: #00c6ff;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-outline:hover {
+    background: rgba(0,198,255,0.1);
+}
+
+.form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+h2 {
+    color: #00bfff;
+}
+
+textarea {
+    height: 45px;
+    resize: none;
+}
+.message {
+    padding: 10px;
+    margin-bottom: 15px;
+    font-weight: 600;
+    border-radius: 6px;
+}
+
+.message.success {
+    background-color: #0f5132;
+    color: #d1e7dd;
+}
+
+.message.error {
+    background-color: #842029;
+    color: #f8d7da;
+}
+
+/* ===== Job Action Buttons ===== */
+.job-actions {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.btn-close {
+    background: #f59e0b;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-close:hover {
+    background: #d97706;
+    transform: translateY(-2px);
+}
+
+.btn-delete {
+    background: #ef4444;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-delete:hover {
+    background: #dc2626;
+    transform: translateY(-2px);
+}
+
+.btn-disabled {
+    background: #475569;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    color: #cbd5e1;
+    cursor: not-allowed;
+}
+
+/* ===== Danger Button (Delete / Reject) ===== */
+.btn-danger {
+    background: transparent;
+    border: 1px solid #ef4444;
+    padding: 8px 16px;
+    border-radius: 6px;
+    color: #ef4444;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-danger:hover {
+    background: rgba(239, 68, 68, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Disabled Button */
+.btn-disabled {
+    background: #475569;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    color: #cbd5e1;
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+/* Job action wrapper */
+.job-actions {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+/* Success Button (Shortlist) */
+.btn-success {
+    background: linear-gradient(135deg, #00bfff, #0072ff);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(5,150,105,0.4);
+}
+
+.application-actions {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}

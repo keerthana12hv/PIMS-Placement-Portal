@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Company Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/company.css">
+</head>
+<body>
+
+<div class="layout">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>🏢 Company Panel</h2>
+        <button onclick="loadDashboard()">Dashboard</button>
+        <button onclick="showCreateJob()">Create Job</button>
+        <button onclick="loadMyJobs()">My Jobs</button>
+        <button onclick="loadApplications()">Applications</button>
+        <button class="logout" onclick="logout()">Logout</button>
+    </div>
+
+    <!-- Main -->
+    <div class="main">
+        <div id="message" class="message"></div>
+        <div id="content"></div>
+    </div>
+
+</div>
+
+<script src="js/company.js"></script>
+</body>
+</html>
