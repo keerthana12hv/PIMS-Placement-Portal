@@ -45,26 +45,6 @@ public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Excepti
 }
 
 
-@Bean
-public CorsConfigurationSource corsConfigurationSource() {
-
-    CorsConfiguration configuration = new CorsConfiguration();
-
-    configuration.setAllowCredentials(true);
-
-    // For now allow all (later restrict to frontend URL)
-    configuration.addAllowedOriginPattern("*");
-
-    configuration.addAllowedHeader("*");
-    configuration.addAllowedMethod("*");
-
-    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-    source.registerCorsConfiguration("/**", configuration);
-
-    return source;
-}
-
-
     @Bean
 public WebSecurityCustomizer webSecurityCustomizer() {
     return (web) -> web.ignoring().requestMatchers("/uploads/**");
