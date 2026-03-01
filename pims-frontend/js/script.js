@@ -114,8 +114,7 @@ function showLogin() {
 
 function togglePassword(inputId, icon) {
   const input = document.getElementById(inputId);
-  const svg = icon.querySelector("svg");
-  const slash = svg.querySelector(".eye-slash");
+  const slash = icon.querySelector(".eye-slash");
 
   if (input.type === "password") {
     input.type = "text";
