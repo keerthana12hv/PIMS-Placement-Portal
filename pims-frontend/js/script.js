@@ -7,7 +7,13 @@ async function login() {
   const password = document.getElementById("loginPassword").value;
   const errorEl = document.getElementById("loginError");
 
+  const loginBtn = document.querySelector("#loginSection button");
+
   errorEl.innerText = "";
+
+  // 🔥 Add loading state
+  loginBtn.innerText = "Logging in...";
+  loginBtn.disabled = true;
 
   try {
     const response = await fetch(`${BASE_URL}/api/auth/login`, {
@@ -18,10 +24,12 @@ async function login() {
       body: JSON.stringify({ email, password }),
     });
 
-    const data = await response.json(); // 🔥 always read response
+    const data = await response.json();
 
     if (!response.ok) {
-      errorEl.innerText = data.error; // 🔥 show backend message
+      errorEl.innerText = data.error || "Login failed.";
+      loginBtn.innerText = "Login";
+      loginBtn.disabled = false;
       return;
     }
 
@@ -35,8 +43,11 @@ async function login() {
     } else if (data.role === "COMPANY") {
       window.location.href = "company.html";
     }
+
   } catch (error) {
-    errorEl.innerText = "Something went wrong. Try again.";
+    errorEl.innerText = "Server is waking up... please wait.";
+    loginBtn.innerText = "Login";
+    loginBtn.disabled = false;
   }
 }
 
@@ -50,7 +61,13 @@ async function register() {
   const role = document.getElementById("registerRole").value;
   const errorEl = document.getElementById("registerError");
 
+  const registerBtn = document.querySelector("#registerSection button");
+
   errorEl.innerText = "";
+
+  // 🔥 Loading state
+  registerBtn.innerText = "Processing...";
+  registerBtn.disabled = true;
 
   try {
     const response = await fetch(`${BASE_URL}/api/auth/register`, {
@@ -61,15 +78,24 @@ async function register() {
       body: JSON.stringify({ email, password, role }),
     });
 
+    const data = await response.json().catch(() => ({}));
+
     if (!response.ok) {
-      throw new Error("Registration failed");
+      errorEl.innerText = data.error || "Registration failed.";
+      registerBtn.innerText = "Register";
+      registerBtn.disabled = false;
+      return;
     }
 
     alert("Registration successful! Please login.");
     showLogin();
+
   } catch (error) {
-    errorEl.innerText = "Registration failed. Try again.";
+    errorEl.innerText = "Server is waking up... please wait.";
   }
+
+  registerBtn.innerText = "Register";
+  registerBtn.disabled = false;
 }
 
 /* =============================
