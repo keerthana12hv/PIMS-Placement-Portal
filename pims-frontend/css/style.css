@@ -40,13 +40,26 @@ label {
     color: #94a3b8;
 }
 
-input, select {
+input {
     padding: 10px;
     border-radius: 8px;
     border: none;
     background: #111827;
     color: white;
 }
+
+select {
+    padding: 10px 40px 10px 10px; /* extra right space for arrow */
+    border-radius: 8px;
+    border: none;
+    background: #111827;
+    color: white;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+
 
 input:focus, select:focus {
     outline: 2px solid #38bdf8;
@@ -177,6 +190,17 @@ button:hover {
   opacity: 0.7;
   margin-top: 8px;
   text-align: center;
+}
+
+.form-group {
+    position: relative;
+}
+
+/* Custom dropdown arrow */
+.form-group select {
+    background-image: url("data:image/svg+xml;utf8,<svg fill='%2394a3b8' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
 }
 
 /* Remove default browser password toggle icon */
