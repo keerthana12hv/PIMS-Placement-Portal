@@ -178,3 +178,15 @@ button:hover {
   margin-top: 8px;
   text-align: center;
 }
+
+/* Remove default browser password toggle icon */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
+}
+
+input[type="password"]::-webkit-credentials-auto-fill-button {
+  visibility: hidden;
+  display: none !important;
+  pointer-events: none;
+}

@@ -114,10 +114,14 @@ function showLogin() {
 
 function togglePassword(inputId, icon) {
   const input = document.getElementById(inputId);
+  const svg = icon.querySelector("svg");
+  const slash = svg.querySelector(".eye-slash");
 
   if (input.type === "password") {
     input.type = "text";
+    slash.style.display = "block";
   } else {
     input.type = "password";
+    slash.style.display = "none";
   }
 }
