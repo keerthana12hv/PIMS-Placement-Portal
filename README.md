@@ -159,17 +159,17 @@ Controller → Service → Repository → Database
 
 **Design decisions worth noting:**
 
-**DTO-based separation** — Request and response objects are completely separated from database entities. This prevents accidental data leaks (like exposing password hashes in API responses) and makes the API contract independent of the internal data model.
+- **DTO-based separation** — Request and response objects are completely separated from database entities. This prevents accidental data leaks (like exposing password hashes in API responses) and makes the API contract independent of the internal data model.
 
-**Service-layer validation** — All business rules (CGPA checks, deadline checks, ownership checks) live in the service layer, not the controller or repository. This keeps each layer focused on a single responsibility and makes the logic straightforward to reason about.
+- **Service-layer validation** — All business rules (CGPA checks, deadline checks, ownership checks) live in the service layer, not the controller or repository. This keeps each layer focused on a single responsibility and makes the logic straightforward to reason about.
 
-**Global exception handling** — A centralized `@ControllerAdvice` handler catches all exceptions and returns consistent, structured error responses. This avoids scattered try-catch blocks and ensures clients always receive predictable error formats regardless of where something fails.
+- **Global exception handling** — A centralized `@ControllerAdvice` handler catches all exceptions and returns consistent, structured error responses. This avoids scattered try-catch blocks and ensures clients always receive predictable error formats regardless of where something fails.
 
-**Custom JWT filter** — Rather than relying on default Spring Security form-login, a custom `JwtAuthenticationFilter` intercepts every request, validates the token, and injects the user's role into the security context. This enables fully stateless authentication with no server-side sessions.
+- **Custom JWT filter** — Rather than relying on default Spring Security form-login, a custom `JwtAuthenticationFilter` intercepts every request, validates the token, and injects the user's role into the security context. This enables fully stateless authentication with no server-side sessions.
 
-**BCrypt hashing** — Passwords are never stored in plain text. BCrypt is used with its built-in salting to protect credentials even if the database were to be compromised.
+- **BCrypt hashing** — Passwords are never stored in plain text. BCrypt is used with its built-in salting to protect credentials even if the database were to be compromised.
 
-**Admin seeding** — The initial admin is created programmatically at startup via `AdminInitializer`, meaning the system is ready to use immediately after deployment without any manual database setup.
+- **Admin seeding** — The initial admin is created programmatically at startup via `AdminInitializer`, meaning the system is ready to use immediately after deployment without any manual database setup.
 
 ---
 
@@ -265,13 +265,13 @@ mvn spring-boot:run
 
 ## 🧗 Challenges & Learnings
 
-**Implementing JWT authentication from scratch** was the steepest learning curve. Understanding how to intercept HTTP requests, validate tokens, and inject authentication into Spring Security's context — all without sessions — required deep reading of the Spring Security filter chain. An additional challenge was whitelisting Swagger UI endpoints without opening up security holes elsewhere.
+- **Implementing JWT authentication from scratch** was the steepest learning curve. Understanding how to intercept HTTP requests, validate tokens, and inject authentication into Spring Security's context — all without sessions — required deep reading of the Spring Security filter chain. An additional challenge was whitelisting Swagger UI endpoints without opening up security holes elsewhere.
 
-**Enforcing data ownership at the service layer** required thinking carefully about trust boundaries. Rather than trusting request parameters (which a malicious user could manipulate), the system extracts company identity from the validated JWT and cross-references it against the requested resource on every sensitive operation.
+- **Enforcing data ownership at the service layer** required thinking carefully about trust boundaries. Rather than trusting request parameters (which a malicious user could manipulate), the system extracts company identity from the validated JWT and cross-references it against the requested resource on every sensitive operation.
 
-**Layering database constraints and application validation together** was an important design lesson. CGPA and deadline checks live in the service layer so users receive meaningful error messages. Duplicate application prevention is enforced at the database level as an additional safety net that cannot be bypassed regardless of the code path taken.
+- **Layering database constraints and application validation together** was an important design lesson. CGPA and deadline checks live in the service layer so users receive meaningful error messages. Duplicate application prevention is enforced at the database level as an additional safety net that cannot be bypassed regardless of the code path taken.
 
-**Containerizing and deploying to Render** turned theoretical knowledge of Docker and environment variables into hands-on experience — including debugging environment-specific issues that only appear in production.
+- **Containerizing and deploying to Render** turned theoretical knowledge of Docker and environment variables into hands-on experience — including debugging environment-specific issues that only appear in production.
 
 ---
 
@@ -288,6 +288,7 @@ These are planned improvements — the core system is fully functional as-is.
 
 ## 👩‍💻 About
 
-Built by **Keerthana** — passionate about backend development and building full-stack systems that work end-to-end.
+PIMS was developed as a full-stack, backend-focused system design exercise.  
+It demonstrates practical implementation of authentication, authorization, business rule enforcement, layered architecture, and cloud deployment in a production-style environment.
 
 🔗 [GitHub Profile](https://github.com/keerthana12hv) &nbsp;|&nbsp; 🌐 [Live Demo](https://chic-cheesecake-df6cbd.netlify.app) &nbsp;|&nbsp; 📄 [API Docs](https://pims-backend-xa8s.onrender.com/swagger-ui/index.html)
