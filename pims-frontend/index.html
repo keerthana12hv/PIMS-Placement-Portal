@@ -1,116 +1,130 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>PIMS Portal</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-
-<div class="auth-container">
-
-    <!-- ================= LOGIN ================= -->
-    <div id="loginSection">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="auth-container">
+      <!-- ================= LOGIN ================= -->
+      <div id="loginSection">
         <h2>Login</h2>
 
         <div class="form-group">
-            <label for="loginEmail">Email</label>
-            <input 
-                type="email" 
-                id="loginEmail" 
-                name="loginEmail"
-                placeholder="Enter your email"
-                required
-            >
+          <label for="loginEmail">Email</label>
+          <input
+            type="email"
+            id="loginEmail"
+            name="loginEmail"
+            placeholder="Enter your email"
+            required
+          />
         </div>
 
         <div class="form-group password-group">
-    <label for="loginPassword">Password</label>
+          <label for="loginPassword">Password</label>
 
-    <div class="password-wrapper">
-        <input 
-            type="password" 
-            id="loginPassword"
-            placeholder="Enter your password"
-            required
-        >
-        <span class="toggle-password" onclick="togglePassword('loginPassword', this)">
-            👁️
-        </span>
-    </div>
-</div>
-
+          <div class="password-wrapper">
+            <input
+              type="password"
+              id="loginPassword"
+              placeholder="Enter your password"
+              required
+            />
+            <span
+              class="toggle-password"
+              onclick="togglePassword('loginPassword', this)"
+            >
+              <svg viewBox="0 0 24 24" class="eye-icon">
+                <path
+                  fill="currentColor"
+                  d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7zm0 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"
+                />
+                <circle cx="12" cy="12" r="2.5" fill="currentColor" />
+              </svg>
+            </span>
+          </div>
+        </div>
 
         <button type="button" onclick="login()">Login</button>
 
         <p class="error" id="loginError"></p>
 
         <p class="server-note">
-⚠ First request may take ~30 seconds (server may be waking up).
-</p>
-
-        <p class="toggle-text">
-            Not registered?
-            <span onclick="showRegister()">Register here</span>
+          ⚠ First request may take ~1 minute (server may be waking up).
         </p>
 
-    </div>
+        <p class="toggle-text">
+          Not registered?
+          <span onclick="showRegister()">Register here</span>
+        </p>
+      </div>
 
-
-    <!-- ================= REGISTER ================= -->
-    <div id="registerSection" class="hidden">
-
+      <!-- ================= REGISTER ================= -->
+      <div id="registerSection" class="hidden">
         <h2>Register</h2>
 
         <div class="form-group">
-            <label for="registerEmail">Email</label>
-            <input 
-                type="email" 
-                id="registerEmail"
-                name="registerEmail"
-                placeholder="Enter your email"
-                required
+          <label for="registerEmail">Email</label>
+          <input
+            type="email"
+            id="registerEmail"
+            name="registerEmail"
+            placeholder="Enter your email"
+            required
+          />
+        </div>
+
+        <div class="form-group password-group">
+          <label for="registerPassword">Password</label>
+
+          <div class="password-wrapper">
+            <input
+              type="password"
+              id="registerPassword"
+              name="registerPassword"
+              placeholder="Minimum 6 characters"
+              required
+            />
+            <span
+              class="toggle-password"
+              onclick="togglePassword('registerPassword', this)"
             >
+              <svg viewBox="0 0 24 24" class="eye-icon">
+                <path
+                  fill="currentColor"
+                  d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7zm0 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"
+                />
+                <circle cx="12" cy="12" r="2.5" fill="currentColor" />
+              </svg>
+            </span>
+          </div>
         </div>
 
         <div class="form-group">
-            <label for="registerPassword">Password</label>
-            <input 
-                type="password" 
-                id="registerPassword"
-                name="registerPassword"
-                placeholder="Minimum 6 characters"
-                required
-            >
-        </div>
-
-        <div class="form-group">
-            <label for="registerRole">Register As</label>
-            <select id="registerRole" name="registerRole" required>
-                <option value="STUDENT">Student</option>
-                <option value="COMPANY">Company</option>
-            </select>
+          <label for="registerRole">Register As</label>
+          <select id="registerRole" name="registerRole" required>
+            <option value="STUDENT">Student</option>
+            <option value="COMPANY">Company</option>
+          </select>
         </div>
 
         <button type="button" onclick="register()">Register</button>
 
         <p class="error" id="registerError"></p>
         <p class="server-note">
-⚠ First request may take ~30 seconds (server may be waking up).
-</p>
-
-        <p class="toggle-text">
-            Already have an account?
-            <span onclick="showLogin()">Login here</span>
+          ⚠ First request may take ~30 seconds (server may be waking up).
         </p>
 
+        <p class="toggle-text">
+          Already have an account?
+          <span onclick="showLogin()">Login here</span>
+        </p>
+      </div>
     </div>
 
-</div>
-
-<script src="js/script.js"></script>
-
-</body>
+    <script src="js/script.js"></script>
+  </body>
 </html>

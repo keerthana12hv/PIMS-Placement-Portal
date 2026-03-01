@@ -106,17 +106,25 @@ button:hover {
 }
 
 .toggle-password {
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    font-size: 16px;
-    opacity: 0.7;
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #94a3b8;      /* soft gray */
+  transition: 0.2s ease;
+  display: flex;
+  align-items: center;
 }
 
 .toggle-password:hover {
-    opacity: 1;
+  color: #38bdf8;      /* blue on hover */
+}
+
+.eye-icon {
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
 }
 
 /* ================= Complete Company Profile Page ================= */
